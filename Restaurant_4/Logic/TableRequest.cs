@@ -29,7 +29,7 @@ namespace Restaurant_4.Logic
             requests[customerName].Add(new T());
         }
 
-        // ===== Get all items of a specific type =====
+        // Get all items of a specific type 
         public List<T> Get<T>() where T : IMenuItem
         {
             List<T> result = new();
@@ -42,7 +42,7 @@ namespace Restaurant_4.Logic
             return result;
         }
 
-        // ===== Indexer by customer NAME =====
+        //  Indexer by customer NAME 
         public List<IMenuItem> this[string customerName]
         {
             get
@@ -54,7 +54,7 @@ namespace Restaurant_4.Logic
             }
         }
 
-        // ===== Improvement 4: Iterator (drinks first, then food) =====
+        //  Improvement 4: Iterator (drinks first, then food) 
         public IEnumerator<IMenuItem> GetEnumerator()
         {
             // 1) Drinks first (not CookedFood)

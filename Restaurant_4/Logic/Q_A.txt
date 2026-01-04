@@ -1,0 +1,37 @@
+﻿/* 
+0. I chose an iterator.
+   I implemented IEnumerable using yield return, not an explicit Enumerator class, because it is simpler, requires less code, and clearly defines the serving order (drinks first, then food).
+
+1. Would the event-based approach behave correctly if there were multiple instances of Server? Why or why not?
+
+Answer:
+Yes, it would behave correctly as long as each Server instance has its own events and subscribers.
+Each Server raises its own event, so only the Cook subscribed to that Server will respond.
+There is no shared state between different Server instances.
+
+2. Would the event-based approach behave correctly if there were multiple instances of Cook? Why or why not?
+
+Answer:
+Yes, it would behave correctly.
+If multiple Cook instances subscribe to the same Server event, all of them will be notified.
+This may result in the same orders being prepared multiple times, so the behavior is correct technically, but additional coordination would be needed in a real system.
+
+3. Did you implement an explicit Enumerator class when making TableRequests enumerable, or did you use an iterator? Explain your choice.
+
+Answer:
+I used an iterator (yield return), not an explicit Enumerator class.
+The iterator approach is simpler, requires less code, and is easier to read.
+It fully satisfies the IEnumerable interface without adding unnecessary complexity.
+
+4. Which method signature do you think is better? Please explain.
+TableRequests.GetItems<T>()
+
+Answer:
+GetItems<T>() is better because it is type-safe, easy to use, and avoids passing Type objects manually.
+The compiler ensures the correct type at compile time, which reduces errors and improves readability.
+
+TableRequests.GetItems(Type itemType)
+
+Answer:
+This approach is less safe because the type is checked at runtime.
+It is more verbose and more error-prone compared to the generic version. */ 

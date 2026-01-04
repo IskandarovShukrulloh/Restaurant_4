@@ -8,17 +8,17 @@ namespace Restaurant_4.Logic
         private int eggQuality = -1;
         public int EggQuality => eggQuality;
 
-        // 🔔 Event: raised when all food is prepared
+        // Event: raised when all food is prepared
         public event Action? OrdersProcessed;
 
-        // 🔗 Subscriber for Server event
+        //  Subscriber for Server event
         public void OnTableRequestsReady(TableRequest requests)
         {
             Process(requests);
             OrdersProcessed?.Invoke();
         }
 
-        // ===== Cooking logic =====
+        //  Cooking logic 
         private void Process(TableRequest requests)
         {
             // --- Cook chickens ---

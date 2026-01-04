@@ -14,10 +14,10 @@ namespace Restaurant_4
 
         private bool cooked = false;
 
-        // 🔔 EVENT: raised when all table requests are ready
+        //  EVENT: raised when all table requests are ready
         public event Action<TableRequest>? TableRequestsReady;
 
-        // ✅ Новый метод: принимаем по ИМЕНИ
+        //  Новый метод: принимаем по ИМЕНИ
         public void ReceiveRequest(string customerName, int chickenQty, int eggQty, string drinkName)
         {
             if (string.IsNullOrWhiteSpace(customerName))
@@ -68,7 +68,7 @@ namespace Restaurant_4
             ReceiveRequest(customerName, chickenQty, eggQty, drinkName);
         }
 
-        // 🚀 SEND button logic → raise event instead of calling Cook
+        // SEND button logic → raise event instead of calling Cook
         public void SendToCook()
         {
             if (tableRequests.CustomerCount == 0)
