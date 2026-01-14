@@ -8,8 +8,6 @@ namespace Restaurant_4.Logic
     // Improvement 4: implements IEnumerable
     public class TableRequest : IEnumerable<IMenuItem>
     {
-        private const int MAX_ITEMS_PER_CUSTOMER = 10;
-
         // customer name -> list of requested items
         private Dictionary<string, List<IMenuItem>> requests = new();
 
@@ -23,8 +21,7 @@ namespace Restaurant_4.Logic
             if (!requests.ContainsKey(customerName))
                 requests[customerName] = new List<IMenuItem>();
 
-            if (requests[customerName].Count >= MAX_ITEMS_PER_CUSTOMER)
-                throw new Exception("Customer has reached maximum item limit");
+
 
             requests[customerName].Add(new T());
         }

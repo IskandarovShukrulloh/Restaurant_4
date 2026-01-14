@@ -11,7 +11,7 @@ namespace Restaurant_4
     {
         private readonly TableRequest tableRequests = new();
         private readonly List<string> customersInOrder = new(); // порядок прихода (пока так)
-
+        private int  _customerCount = 0;
         private bool cooked = false;
 
         //  EVENT: raised when all table requests are ready
@@ -25,6 +25,9 @@ namespace Restaurant_4
 
             if (!customersInOrder.Contains(customerName))
                 customersInOrder.Add(customerName);
+
+            if (_customerCount >= 8)
+                throw new Exception("Maximum customer limit for a table reached!");
 
             // Add chickens
             for (int i = 0; i < chickenQty; i++)
@@ -58,15 +61,10 @@ namespace Restaurant_4
             }
 
             cooked = false;
+            _customerCount++;
         }
 
-        // (опционально) чтобы старые вызовы не ломали сборку — можно удалить, если не нужно
-        public void ReceiveRequest(int chickenQty, int eggQty, string drinkName)
-        {
-            // временный дефолт (пока UI не прокидывает имя)
-            string customerName = $"Customer{customersInOrder.Count + 1}";
-            ReceiveRequest(customerName, chickenQty, eggQty, drinkName);
-        }
+        
 
         // SEND button logic → raise event instead of calling Cook
         public void SendToCook()
@@ -76,6 +74,7 @@ namespace Restaurant_4
 
             cooked = true;
             TableRequestsReady?.Invoke(tableRequests);
+            _customerCount = 0;
         }
 
         // Serve food to customers (by current order list)

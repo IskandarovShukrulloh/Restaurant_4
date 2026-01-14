@@ -62,7 +62,7 @@ namespace Restaurant_4
         // Serve prepared food
         private void BtnServeFood_Click(object sender, RoutedEventArgs e)
         {
-            txtResults.Text += _server.ServeFood();
+            txtResults.Text = _server.ServeFood();
         }
     }
 }
